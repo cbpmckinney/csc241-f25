@@ -38,7 +38,10 @@ int main(void)
     printf("The name of the customer is %s.\n", ptr->name);
     printf("The name of the customer is %s.\n", Bob.name);
     
-
+    // Bob->name is syntactic sugar.
+    // (*a).name
+    // int array[5];
+    // array[3] this means *(ptr+3)
 
 
 
