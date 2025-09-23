@@ -28,12 +28,13 @@ int main(void)
     Steve.age = Steve.age + 1;
     printf("Steve is now %d years old.\n", Steve.age);
 
-    Bob.balance = 2.0;
+    Bob.balance = 0.0;
 
     Customer2 * ptr = &Bob;
-    //printf("Bob is located in memory at %p\n", ptr);
+    printf("Bob is located in memory at %p\n", ptr);
+    printf("Bob's balance is stored at %p.\n", &(Bob.balance));
 
-    //printf("Bob's balance is now %d.\n", Bob.balance);
+    printf("Bob's balance is now %d.\n", Bob.balance);
 
     printf("The name of the customer is %s.\n", ptr->name);
     printf("The name of the customer is %s.\n", Bob.name);
