@@ -1,7 +1,7 @@
 .data
-numa: .dword 0x5
-numb: .dword 0x32
-numc: .dword 0x0
+numa: .word 0x1
+numb: .word 0x2
+numc: .word 0x0
 fmtstring: .asciz "The sum of %li and %li is %li\n"
 
 .text
@@ -10,18 +10,23 @@ fmtstring: .asciz "The sum of %li and %li is %li\n"
 main:
 stp x29, x30, [sp, #-16]!
 
-mov x1, #0x5
-mov x2, #0x32
-add x3, x1, x2
+ldr x0, =numa
+ldr w1, [x0]
+
+ldr x2, =numb
+ldr w2, [x2]
+
+add w3, w1, w2
 
 
 
-ldr x0, =fmtstring
+ldr x0, =fmtstring 
+// kind of like doing & in C
 
 bl printf
 //fmtstring: .asciz "The sum of %li and %li is %li\n"
 // printf(fmtstring, numa, numb, numc);
-//           x0       x1    x2    x3 
+//           x0       w1    w2    w3 
 
 
 ldp x29, x30, [sp], #16
