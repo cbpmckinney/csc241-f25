@@ -16,8 +16,8 @@ ldr w0, [x0]
 ldr x1, =numb
 ldr w1, [x1]
 
-bl myadd
-// numc = myadd(numa, numb)
+bl myfunc
+// numc = myfunc(numa, numb)
 //              w0    w1
 // answer numc is in register w0.  Let's store it.
 
@@ -48,13 +48,21 @@ ldp x29, x30, [sp], #16
 mov w0, #0
 ret
 
-myadd:
-// myadd(numa, numb) 
+
+myfunc:
+// myfunc(numa, numb) 
 //       w0    w1
+// compute (numa - numb)^2 + (numa + numb)^2
+
+
 stp x29, x30, [sp, #-16]!
 
 
-add w0, w0, w1
+sub w2, w0, w1
+add w3, w0, w1
+mul w4, w2, w2
+mul w5, w3, w3
+add w0, w4, w5
 
 
 ldp x29, x30, [sp], #16

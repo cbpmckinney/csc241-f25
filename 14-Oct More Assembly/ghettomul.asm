@@ -1,8 +1,8 @@
 .data
-numa: .word 0x1
-numb: .word 0x2
+numa: .word 0x6
+numb: .word 0x7
 numc: .word 0x0
-fmtstring: .asciz "The sum of %d and %d is %d\n"
+fmtstring: .asciz "The product of %d and %d is %d\n"
 
 .text
 
@@ -16,8 +16,8 @@ ldr w0, [x0]
 ldr x1, =numb
 ldr w1, [x1]
 
-bl myadd
-// numc = myadd(numa, numb)
+bl ghettomul
+// numc = myfunc(numa, numb)
 //              w0    w1
 // answer numc is in register w0.  Let's store it.
 
@@ -48,14 +48,31 @@ ldp x29, x30, [sp], #16
 mov w0, #0
 ret
 
-myadd:
-// myadd(numa, numb) 
-//       w0    w1
+
+ghettomul:
+
+
 stp x29, x30, [sp, #-16]!
 
+// numa, numb
 
-add w0, w0, w1
+//int sum = 0;
+//while numb > 0
+//{
+//    sum += numa
+//    numb -= 1
+//}
 
+mov w2, #0
+
+loop:
+cbz w1, done
+add w2, w2, w0
+sub w1, w1, #1
+b loop
+
+done:
+mov w0, w2
 
 ldp x29, x30, [sp], #16
 ret
