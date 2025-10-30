@@ -1,0 +1,138 @@
+\documentclass{beamer}
+\usepackage{tikz}
+\usetikzlibrary{trees, arrows.meta}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nopageno}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{drawstack}
+\usepackage{xcolor}
+\definecolor{WabashRed}{HTML}{C8102E} % Wabash red (tweak if needed)
+
+% --- Theme base (minimal) ---
+\setbeamertemplate{navigation symbols}{} % no nav icons
+\usecolortheme{default}
+
+% --- Frame title: white text on red bar ---
+\setbeamercolor{frametitle}{fg=white,bg=WabashRed}
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3.2ex,dp=1.2ex,left]{frametitle}
+    \hspace*{1ex}\insertframetitle
+  \end{beamercolorbox}%
+}
+
+% --- Title page bar to match (optional) ---
+\setbeamercolor{title}{fg=white,bg=WabashRed}
+\setbeamertemplate{title page}{%
+  \vbox{}
+  \vfill
+  \begin{beamercolorbox}[wd=\paperwidth,ht=5ex,dp=1.5ex,center]{title}
+    \usebeamerfont{title}\inserttitle
+  \end{beamercolorbox}
+  \vspace{1.2em}
+  \begin{center}
+    \insertauthor\par
+    \insertinstitute\par
+    \insertdate
+  \end{center}
+  \vfill
+}
+
+% --- Slim red footline with school name (left) and slide numbers (right) ---
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox{%
+    \colorbox{WabashRed}{%
+      \parbox[c][2.2ex][c]{\paperwidth}{%
+        \hspace{1ex}%
+        {\color{white}\footnotesize Wabash College}%
+        \hfill
+        {\color{white}\footnotesize \insertframenumber{} / \inserttotalframenumber}%
+        \hspace{1ex}%
+      }%
+    }%
+  }%
+}
+
+
+
+
+
+
+
+\title{Your Talk Title}
+\author{Your Name}
+\institute{Wabash College}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}{}
+
+\titlepage
+	
+\end{frame}
+
+
+
+\begin{frame}{}
+\frametitle{The Stack}
+
+\begin{block}<1->{asdf}
+Text goes here
+
+
+\end{block}
+
+	
+\end{frame}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+\scalebox{0.5}{
+\begin{drawstack}
+  % Within the environment, draw stack elements with \cell{...}
+  \startframe
+  \cell{Ret addr from main (8)}
+  \finishframe{Whatever called main (OS?)}
+  \startframe
+    \cell{FP before main (8)}
+  \cell{R0-3 saved in main (4*4)}
+  \cell{x local of main (4)}
+  \cell{y local of main (4)}
+  \cell{f local of main (4)}
+  \cell{argument x (4)}
+  \cell{argument y (4)}
+  \cell{ret val from foo1 (4)}
+  \cell{ret addr from foo1 (8)}
+  \finishframe{main()}
+  
+  \startframe
+  \cell{FP before foo1 (8)}
+  \cell{R0-3 saved in foo1 (4*4)}
+  \cell{g local of foo1 (4)}
+  \cell{argument a (4)}
+  \cell{argument b (4)}
+  \cell{ret val from bar (4)}
+  \cell{ret addr from bar (8)}
+  \finishframe{foo1()}
+  
+  \startframe
+  \cell{FP before bar (8)} \cellptr{FP}
+  \cell{R0-3 saved in bar (4*4)}
+  \cell{i local of bar} \cellptr{SP}
+  \finishframe{bar()}
+  
+  
+\end{drawstack}
+}
