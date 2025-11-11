@@ -1,8 +1,8 @@
 .data
 
-printstr: .asciz "Answer: %f\n"
+printstr: .asciz "Answer: %f\n"   // %f in an output string means double
 prompt: .asciz "Please enter a float"
-instr: .asciz "%f"
+instr: .asciz "%f"  // %f in input string means single, %lf means double
 magic32: .word 0x5f3759df
 num: .word 0x0
 ans: .word 0x0
