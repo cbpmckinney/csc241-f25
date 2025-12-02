@@ -27,6 +27,8 @@ ld1 {v0.4s}, [x0], #16
 ld1 {v1.4s}, [x0], #16
 ld1 {v2.4s}, [x0], #16
 ld1 {v3.4s}, [x0], #16
+// Can replace the four lines above with:
+// ld1 {v0.4s, v1.4s, v2.4s, v3.4s}, [x0]
 
 ldr x1, =matB
 ld4 {v4.4s, v5.4s, v6.4s, v7.4s}, [x1]
